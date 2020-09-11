@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getLocation, getWeatherLocation } from './services/weather/api';
+import WeatherInfo from './components/WeatherInfo/WeatherInfo';
 import './assets/stylesheets/App.css';
 
 const App = () => {
@@ -13,7 +14,21 @@ const App = () => {
     });
   }, []);
 
-  return <h1>Hola mundo</h1>;
+  const getAverageTemperature = () => {
+    if (!Object.keys(locationWeather).length) return null;
+
+    const totalTemperature = locationWeather.consolidated_weather.reduce(
+      (totalTemperature, weatherInfo) =>
+        totalTemperature + weatherInfo.the_temp,
+      0
+    );
+
+    return parseInt(
+      totalTemperature / locationWeather.consolidated_weather.length
+    );
+  };
+
+  return <WeatherInfo temperature={getAverageTemperature()} />;
 };
 
 export default App;
