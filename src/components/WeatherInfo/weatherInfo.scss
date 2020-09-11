@@ -1,0 +1,68 @@
+.weatherInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primary-color;
+  color: $light-color;
+  height: 100vh;
+  padding-top: 18px;
+  padding-left: 10px;
+  padding-bottom: 100px;
+
+  &__searchBtn {
+    width: 125px;
+    height: 19px;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: $tertiary-color;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &__imgContainer {
+    height: 174px;
+    width: 150px;
+    margin-top: 70px;
+    border: 2px solid lightblue;
+  }
+
+  &__img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__temperature {
+    font-weight: 500;
+    font-size: 144px;
+    margin-top: 40px;
+
+    &::after {
+      content: 'ºC';
+      font-size: 60px;
+      opacity: 70%;
+    }
+  }
+
+  &__state {
+    font-size: 36px;
+    font-weight: 500;
+    margin-top: 30px;
+  }
+
+  &__dateContainer {
+    margin-top: 48px;
+    font-size: 18px;
+
+    span {
+      &:first-child {
+        margin-right: 40px;
+      }
+    }
+  }
+
+  &__location {
+    margin-top: 33px;
+    font-size: 18px;
+  }
+}
