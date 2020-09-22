@@ -20,6 +20,14 @@ const App = () => {
   const getLocationApi = (inputValue) =>
     getLocation(inputValue).then((locationData) => locationData);
 
+  const getWeatherLocationApi = (selected) => {
+    setIsWeatherDataReady(false);
+    getWeatherLocation(selected.value).then((weatherData) => {
+      setLocationWeather(weatherData);
+      setIsWeatherDataReady(true);
+    });
+  };
+
   const getAverageTemperature = () => {
     if (!Object.keys(locationWeather).length) return null;
 
@@ -46,6 +54,7 @@ const App = () => {
         locationWeather.consolidated_weather[0].weather_state_abbr
       )}
       onSearcherChange={getLocationApi}
+      onSearcherSelect={getWeatherLocationApi}
     />
   );
 };

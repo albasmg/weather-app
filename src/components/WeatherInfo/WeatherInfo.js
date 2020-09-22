@@ -8,6 +8,7 @@ const WeatherInfo = ({
   city,
   stateIcon,
   onSearcherChange,
+  onSearcherSelect,
 }) => {
   const [showSearcherPanel, setShowSearcherPanel] = useState(false);
 
@@ -17,6 +18,7 @@ const WeatherInfo = ({
         <SearcherPanel
           onClose={() => setShowSearcherPanel(false)}
           onSearcherChange={onSearcherChange}
+          onSearcherSelect={onSearcherSelect}
         />
       ) : (
         <>

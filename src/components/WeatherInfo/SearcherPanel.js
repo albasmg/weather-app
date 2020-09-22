@@ -14,18 +14,27 @@ const colourOptions = [
   { value: 'silver', label: 'Silver', color: '#666666' },
 ];
 
-const SearcherPanel = ({ onClose, onSearcherChange }) => {
+const SearcherPanel = ({ onClose, onSearcherChange, onSearcherSelect }) => {
   const promiseOptions = (inputValue) =>
     onSearcherChange(inputValue).then((results) =>
       results.map((result) => ({
         label: result.title,
-        value: result.title,
+        value: result.woeid,
       }))
     );
 
+  const handleSelectChange = (selectedOption) => {
+    onSearcherSelect(selectedOption);
+    onClose();
+  };
+
   return (
     <section>
-      <AsyncSelect loadOptions={promiseOptions} cacheOptions />
+      <AsyncSelect
+        loadOptions={promiseOptions}
+        cacheOptions
+        onChange={handleSelectChange}
+      />
       <button>Search</button>
       <button onClick={onClose}>Close</button>
     </section>
