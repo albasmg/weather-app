@@ -2,13 +2,22 @@ import React, { useState } from 'react';
 import background from '../../assets/images/Cloud-background.png';
 import SearcherPanel from './SearcherPanel';
 
-const WeatherInfo = ({ temperature, state, city, stateIcon }) => {
+const WeatherInfo = ({
+  temperature,
+  state,
+  city,
+  stateIcon,
+  onSearcherChange,
+}) => {
   const [showSearcherPanel, setShowSearcherPanel] = useState(false);
 
   return (
     <aside className="weatherInfo">
       {showSearcherPanel ? (
-        <SearcherPanel onClose={() => setShowSearcherPanel(false)} />
+        <SearcherPanel
+          onClose={() => setShowSearcherPanel(false)}
+          onSearcherChange={onSearcherChange}
+        />
       ) : (
         <>
           <div>

@@ -17,6 +17,9 @@ const App = () => {
     });
   }, []);
 
+  const getLocationApi = (inputValue) =>
+    getLocation(inputValue).then((locationData) => locationData);
+
   const getAverageTemperature = () => {
     if (!Object.keys(locationWeather).length) return null;
 
@@ -42,6 +45,7 @@ const App = () => {
       stateIcon={mapWeatherStatesToImages(
         locationWeather.consolidated_weather[0].weather_state_abbr
       )}
+      onSearcherChange={getLocationApi}
     />
   );
 };
