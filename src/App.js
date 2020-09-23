@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getLocation, getWeatherLocation } from './services/weather/api';
 import { mapWeatherStatesToImages } from './utils';
 import WeatherInfo from './components/WeatherInfo/WeatherInfo';
+import WeatherExtraInfo from './components/WeatherExtraInfo/WeatherExtraInfo';
 import './assets/stylesheets/App.scss';
 
 const App = () => {
@@ -46,16 +47,19 @@ const App = () => {
   if (!isWeatherDataReady) return 'Loading';
 
   return (
-    <WeatherInfo
-      temperature={getAverageTemperature()}
-      state={locationWeather.consolidated_weather[0].weather_state_name}
-      city={locationWeather.title}
-      stateIcon={mapWeatherStatesToImages(
-        locationWeather.consolidated_weather[0].weather_state_abbr
-      )}
-      onSearcherChange={getLocationApi}
-      onSearcherSelect={getWeatherLocationApi}
-    />
+    <>
+      <WeatherInfo
+        temperature={getAverageTemperature()}
+        state={locationWeather.consolidated_weather[0].weather_state_name}
+        city={locationWeather.title}
+        stateIcon={mapWeatherStatesToImages(
+          locationWeather.consolidated_weather[0].weather_state_abbr
+        )}
+        onSearcherChange={getLocationApi}
+        onSearcherSelect={getWeatherLocationApi}
+      />
+      <WeatherExtraInfo />
+    </>
   );
 };
 
