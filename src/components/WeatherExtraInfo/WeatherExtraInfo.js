@@ -1,7 +1,8 @@
 import React from 'react';
 
-const WeatherExtraInfo = () => {
-  return <h1>Hola</h1>;
+const WeatherExtraInfo = ({ locationWeather }) => {
+  console.log(locationWeather);
+  return <section className="weatherExtraInfo"></section>;
 };
 
 export default WeatherExtraInfo;

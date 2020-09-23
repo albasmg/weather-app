@@ -1,0 +1,9 @@
+.weatherExtraInfo {
+  background-color: $dark-color;
+  width: 100%;
+
+  @include for-tablet {
+    height: 100vh;
+    width: 70%;
+  }
+}

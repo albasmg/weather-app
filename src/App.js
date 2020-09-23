@@ -3,7 +3,6 @@ import { getLocation, getWeatherLocation } from './services/weather/api';
 import { mapWeatherStatesToImages } from './utils';
 import WeatherInfo from './components/WeatherInfo/WeatherInfo';
 import WeatherExtraInfo from './components/WeatherExtraInfo/WeatherExtraInfo';
-import './assets/stylesheets/App.scss';
 
 const App = () => {
   const [locationWeather, setLocationWeather] = useState({});
@@ -29,27 +28,17 @@ const App = () => {
     });
   };
 
-  const getAverageTemperature = () => {
-    if (!Object.keys(locationWeather).length) return null;
-
-    const totalTemperature = locationWeather.consolidated_weather.reduce(
-      (totalTemperature, weatherInfo) =>
-        totalTemperature + weatherInfo.the_temp,
-      0
-    );
-
-    return parseInt(
-      totalTemperature / locationWeather.consolidated_weather.length
-    );
+  const roundTemperature = () => {
+    return parseInt(locationWeather.consolidated_weather[0].the_temp);
   };
 
   //TODO: create loading component
   if (!isWeatherDataReady) return 'Loading';
 
   return (
-    <>
+    <main className="main">
       <WeatherInfo
-        temperature={getAverageTemperature()}
+        temperature={roundTemperature()}
         state={locationWeather.consolidated_weather[0].weather_state_name}
         city={locationWeather.title}
         stateIcon={mapWeatherStatesToImages(
@@ -59,7 +48,7 @@ const App = () => {
         onSearcherSelect={getWeatherLocationApi}
       />
       <WeatherExtraInfo />
-    </>
+    </main>
   );
 };
 

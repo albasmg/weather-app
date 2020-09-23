@@ -9,9 +9,10 @@
   padding-top: 18px;
   padding-left: 10px;
   padding-bottom: 52px;
+  overflow: hidden;
 
   @include for-tablet {
-    width: 459px;
+    width: 30%;
     position: relative;
     top: 0;
     left: 0;
